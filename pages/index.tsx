@@ -96,18 +96,15 @@ export default function Quiz() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleAnswer = (index: number) => { /* код из примера */ };
-  const getResult = () => { /* код из примера */ };
-  const restartQuiz = () => { /* код из примера */ };
-
-  const progressPercentage = (current / quizData.length) * 100;
-  const currentQuestion = quizData[current];
   const getResult = (): string => {
   if (score === 10) return "Легенда 'Отличника' 🎓 — ты король дневника и душа ярмарки!";
   if (score >= 8) return "Гордость школы ✨ — почти всё знаешь, даже без шпаргалок!";
   if (score >= 5) return "Скрытый отличник 😉 — ты на пути к вершине!";
   if (score >= 2) return "Гость ярмарки 🛍️ — но явно с чувством юмора!";
-  return "Капибара-путешественник 🦫 — тебе просто весело!";
-};
+  return "Капибара-путешественник 🦫 — тебе просто весело!";};
+  const restartQuiz = () => { /* код из примера */ };
+  const progressPercentage = (current / quizData.length) * 100;
+  const currentQuestion = quizData[current];
   
   return (
     <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
