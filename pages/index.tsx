@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// Quiz data with questions, options, and answers
+// Вопросы квиза
 const quizData = [
   {
     question: "Какой предмет в школе 'Отличник' начинается с фразы 'Сиди ровней, пиши быстрее!'?",
@@ -95,17 +95,41 @@ export default function Quiz() {
   const [showResult, setShowResult] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
-  const handleAnswer = (index: number) => { /* код из примера */ };
+  const handleAnswer = (index: number) => {
+    setSelectedOption(index);
+
+    setTimeout(() => {
+      if (index === quizData[current].answer) {
+        setScore((prev) => prev + 1);
+      }
+
+      if (current + 1 < quizData.length) {
+        setCurrent((prev) => prev + 1);
+        setSelectedOption(null);
+      } else {
+        setShowResult(true);
+      }
+    }, 500);
+  };
+
   const getResult = (): string => {
-  if (score === 10) return "Легенда 'Отличника' 🎓 — ты король дневника и душа ярмарки!";
-  if (score >= 8) return "Гордость школы ✨ — почти всё знаешь, даже без шпаргалок!";
-  if (score >= 5) return "Скрытый отличник 😉 — ты на пути к вершине!";
-  if (score >= 2) return "Гость ярмарки 🛍️ — но явно с чувством юмора!";
-  return "Капибара-путешественник 🦫 — тебе просто весело!";};
-  const restartQuiz = () => { /* код из примера */ };
+    if (score === 10) return "Легенда 'Отличника' 🎓 — ты король дневника и душа ярмарки!";
+    if (score >= 8) return "Гордость школы ✨ — почти всё знаешь, даже без шпаргалок!";
+    if (score >= 5) return "Скрытый отличник 😉 — ты на пути к вершине!";
+    if (score >= 2) return "Гость ярмарки 🛍️ — но явно с чувством юмора!";
+    return "Капибара-путешественник 🦫 — тебе просто весело!";
+  };
+
+  const restartQuiz = () => {
+    setCurrent(0);
+    setScore(0);
+    setShowResult(false);
+    setSelectedOption(null);
+  };
+
   const progressPercentage = (current / quizData.length) * 100;
   const currentQuestion = quizData[current];
-  
+
   return (
     <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
       {showResult ? (
