@@ -145,9 +145,9 @@ export default function Quiz() {
           </button>
         </div>
       ) : currentQuestion ? (
-        <div className="question-container text-center bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <div className="question-container flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow-md w-full max-w-md">
           <h2 className="text-2xl font-bold mb-4">{currentQuestion.question}</h2>
-          <div className="options space-y-4">
+          <div className="options flex flex-col items-center space-y-4">
             {currentQuestion.options.map((option, i) => (
               <button
                 key={i}
